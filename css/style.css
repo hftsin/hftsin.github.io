@@ -694,7 +694,7 @@ button:not(:-moz-focusring):focus > .menu__btn-title {
 }
 
 .content ul {
-	list-style: square;
+	list-style: disc;
 }
 
 .content ol {
@@ -703,14 +703,14 @@ button:not(:-moz-focusring):focus > .menu__btn-title {
 
 .content ul,
 .content ol {
-	margin: 0 0 20px 40px;
+	margin: 0 0 20px 15px;
 }
 
 .content ul ul,
 .content ol ol,
 .content ol ul,
 .content ul ol {
-	margin: 0 0 0 40px;
+	margin: 0 0 0 15px;
 }
 
 .content li {
