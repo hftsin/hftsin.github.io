@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Modern Cpp on</title><link>/categories/modern-cpp/</link><description>Recent content in Modern Cpp on</description><generator>Hugo</generator><language>en</language><lastBuildDate>Mon, 03 Mar 2025 06:33:22 +0800</lastBuildDate><atom:link href="/categories/modern-cpp/index.xml" rel="self" type="application/rss+xml"/><item><title>Understanding Value Categories in Modern C++</title><link>/posts/cpp-value-categories/</link><pubDate>Mon, 03 Mar 2025 06:33:22 +0800</pubDate><guid>/posts/cpp-value-categories/</guid><description>&lt;h2 id="introduction" class="heading">Introduction&lt;a href="#introduction" aria-labelledby="introduction">
+&lt;!-- &lt;i class="fas fa-link anchor">&lt;/i> -->
+ &lt;svg class="svg-inline--fa fas fa-link anchor" fill="currentColor" aria-hidden="true" role="img" viewBox="0 0 640 512">&lt;use href="#fas-link">&lt;/use>&lt;/svg>&amp;nbsp;
+ &lt;/a>
+&lt;/h2>
+&lt;p>Value categories in C++ are fundamental concepts that classify expressions based on their properties. Understanding value categories is essential and crucial for modern C++ programming, especially when working with performance optimization through move semantics and perfect forwarding.&lt;/p>
+
+
+
+&lt;h2 id="understanding-value-categories" class="heading">Understanding Value Categories&lt;a href="#understanding-value-categories" aria-labelledby="understanding-value-categories">
+&lt;!-- &lt;i class="fas fa-link anchor">&lt;/i> -->
+ &lt;svg class="svg-inline--fa fas fa-link anchor" fill="currentColor" aria-hidden="true" role="img" viewBox="0 0 640 512">&lt;use href="#fas-link">&lt;/use>&lt;/svg>&amp;nbsp;
+ &lt;/a>
+&lt;/h2>
+
+
+
+&lt;h3 id="basic-concepts" class="heading">Basic Concepts&lt;a href="#basic-concepts" aria-labelledby="basic-concepts">
+&lt;!-- &lt;i class="fas fa-link anchor">&lt;/i> -->
+ &lt;svg class="svg-inline--fa fas fa-link anchor" fill="currentColor" aria-hidden="true" role="img" viewBox="0 0 640 512">&lt;use href="#fas-link">&lt;/use>&lt;/svg>&amp;nbsp;
+ &lt;/a>
+&lt;/h3>
+&lt;p>Prior to modern C++, the values of expression can be roughly categories into &lt;code>lvalue&lt;/code> and &lt;code>rvalue&lt;/code> by the relative position of value to the assignment operator. Lvalue appears on the left side of assignment while Rvalue is on the right end.&lt;/p></description></item></channel></rss>
