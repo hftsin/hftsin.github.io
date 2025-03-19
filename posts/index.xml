@@ -1,23 +1,144 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on</title><link>/posts/</link><description>Recent content in Posts on</description><generator>Hugo</generator><language>en</language><lastBuildDate>Mon, 03 Mar 2025 06:33:22 +0800</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Understanding Value Categories in Modern C++</title><link>/posts/cpp-value-categories/</link><pubDate>Mon, 03 Mar 2025 06:33:22 +0800</pubDate><guid>/posts/cpp-value-categories/</guid><description>&lt;h2 id="introduction" class="heading">Introduction&lt;a href="#introduction" aria-labelledby="introduction">
-&lt;!-- &lt;i class="fas fa-link anchor">&lt;/i> -->
- &lt;svg class="svg-inline--fa fas fa-link anchor" fill="currentColor" aria-hidden="true" role="img" viewBox="0 0 640 512">&lt;use href="#fas-link">&lt;/use>&lt;/svg>&amp;nbsp;
- &lt;/a>
-&lt;/h2>
-&lt;p>Value categories in C++ are fundamental concepts that classify expressions based on their properties. Understanding value categories is essential and crucial for modern C++ programming, especially when working with performance optimization through move semantics and perfect forwarding.&lt;/p>
-
-
-
-&lt;h2 id="understanding-value-categories" class="heading">Understanding Value Categories&lt;a href="#understanding-value-categories" aria-labelledby="understanding-value-categories">
-&lt;!-- &lt;i class="fas fa-link anchor">&lt;/i> -->
- &lt;svg class="svg-inline--fa fas fa-link anchor" fill="currentColor" aria-hidden="true" role="img" viewBox="0 0 640 512">&lt;use href="#fas-link">&lt;/use>&lt;/svg>&amp;nbsp;
- &lt;/a>
-&lt;/h2>
-
-
-
-&lt;h3 id="basic-concepts" class="heading">Basic Concepts&lt;a href="#basic-concepts" aria-labelledby="basic-concepts">
-&lt;!-- &lt;i class="fas fa-link anchor">&lt;/i> -->
- &lt;svg class="svg-inline--fa fas fa-link anchor" fill="currentColor" aria-hidden="true" role="img" viewBox="0 0 640 512">&lt;use href="#fas-link">&lt;/use>&lt;/svg>&amp;nbsp;
- &lt;/a>
-&lt;/h3>
-&lt;p>Prior to modern C++, the values of expression can be roughly categories into &lt;code>lvalue&lt;/code> and &lt;code>rvalue&lt;/code> by the relative position of value to the assignment operator. Lvalue appears on the left side of assignment while Rvalue is on the right end.&lt;/p></description></item></channel></rss>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Happy Hacking – Posts</title><link>/posts/</link><description>Recent content in Posts on Happy Hacking</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 03 Mar 2025 06:33:22 +0800</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml"/><item><title>Understanding Value Categories in Modern C++</title><link>/posts/cpp-value-categories/</link><pubDate>Mon, 03 Mar 2025 06:33:22 +0800</pubDate><guid>/posts/cpp-value-categories/</guid><description>
+&lt;h2>Introduction&lt;span class="hx-absolute -hx-mt-20" id="introduction">&lt;/span>
+&lt;a href="#introduction" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>Value categories in C++ are fundamental concepts that classify expressions based on their properties. Understanding value categories is essential and crucial for modern C++ programming, especially when working with performance optimization through move semantics and perfect forwarding.&lt;/p>
+&lt;h2>Understanding Value Categories&lt;span class="hx-absolute -hx-mt-20" id="understanding-value-categories">&lt;/span>
+&lt;a href="#understanding-value-categories" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;h3>Basic Concepts&lt;span class="hx-absolute -hx-mt-20" id="basic-concepts">&lt;/span>
+&lt;a href="#basic-concepts" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>Prior to modern C++, the values of expression can be roughly categories into &lt;code>lvalue&lt;/code> and &lt;code>rvalue&lt;/code> by the relative position of value to the assignment operator. Lvalue appears on the left side of assignment while Rvalue is on the right end.&lt;/p>
+&lt;p>Since C++11, to support the introduction of move semantics, the value categories are refined through two fundamental properties:&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>Has Identity&lt;/strong>: Can the object be identified (i.e., located in memory, addressed, persists across statements)&lt;/li>
+&lt;li>&lt;strong>Can Be Moved From&lt;/strong>: Can the object&amp;rsquo;s resources be transferred to another object&lt;/li>
+&lt;/ol>
+&lt;p>Value that has identity is generalized left value (glvalue), while values that can be moved from are right values (rvalue). Glvalue contains lvalue and xvalue (expiring value), Rvalue contains pvalue and xvalue.&lt;/p>
+&lt;p>&lt;img src="img/cpp11_val_cat.png" alt="value categories in C&amp;#43;&amp;#43;11" loading="lazy" />&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Category&lt;/th>
+&lt;th>Has Identity&lt;/th>
+&lt;th>Can Be Moved From&lt;/th>
+&lt;th>Example&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>lvalue&lt;/td>
+&lt;td>✅ Yes&lt;/td>
+&lt;td>❌ No&lt;/td>
+&lt;td>&lt;code>x&lt;/code>, &lt;code>*p&lt;/code>, &lt;code>arr[0]&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>xvalue&lt;/td>
+&lt;td>✅ Yes&lt;/td>
+&lt;td>✅ Yes&lt;/td>
+&lt;td>&lt;code>std::move(x)&lt;/code>, &lt;code>arr[0]&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>prvalue&lt;/td>
+&lt;td>❌ No&lt;/td>
+&lt;td>✅ Yes&lt;/td>
+&lt;td>&lt;code>42&lt;/code>, &lt;code>x + y&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3>Examples&lt;span class="hx-absolute -hx-mt-20" id="examples">&lt;/span>
+&lt;a href="#examples" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-cpp" data-lang="cpp">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// lvalue examples
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">42&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">// x is lvalue
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="o">&amp;amp;&lt;/span> &lt;span class="n">ref&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">// ref is lvalue
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">arr&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">];&lt;/span> &lt;span class="c1">// arr is lvalue
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">string&lt;/span> &lt;span class="n">str&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">// str is lvalue
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// prvalue examples
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="nf">getValue&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="mi">42&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">// 42 is prvalue
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">auto&lt;/span> &lt;span class="n">lambda&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">[](){};&lt;/span> &lt;span class="c1">// lambda expression is prvalue
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="mi">1&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">// arithmetic result is prvalue
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// xvalue examples
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">move&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">);&lt;/span> &lt;span class="c1">// result is xvalue
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">string&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="n">substr&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="c1">// temporary object from member function
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="k">static_cast&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="o">&amp;amp;&amp;amp;&amp;gt;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="c1">// cast to rvalue reference
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// Understanding combined categories:
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="k">struct&lt;/span> &lt;span class="nc">S&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="n">m&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">S&lt;/span>&lt;span class="p">().&lt;/span>&lt;span class="n">m&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">// member of prvalue: xvalue
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">move&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="n">m&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">// member of xvalue: xvalue
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;h2>Evolution of Value Categories&lt;span class="hx-absolute -hx-mt-20" id="evolution-of-value-categories">&lt;/span>
+&lt;a href="#evolution-of-value-categories" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>The evolution of value categories in C++ reflects the language&amp;rsquo;s growth in handling efficient resource management and perfect forwarding.&lt;/p>
+&lt;pre class="mermaid hx-mt-6">timeline
+title C++ Value Categories Evolution Timeline
+section Classic Era
+1983 : C++ Initial Release
+: Only lvalue and rvalue
+1998 : C++98 Standard
+: Maintained simple model
+section Modern Era
+2011 : C++11 Revolution
+: Added xvalue category
+: Introduced move semantics
+: Rvalue references
+2017 : C++17 Changes
+: Guaranteed copy elision
+: Mandatory RVO
+: Better prvalue handling
+2020 : C++20 Refinements
+: Property-based model
+: Enhanced template rules&lt;/pre>&lt;h3>Pre-C++11&lt;span class="hx-absolute -hx-mt-20" id="pre-c11">&lt;/span>
+&lt;a href="#pre-c11" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>In traditional C++ (pre C++11), there were only two value categories:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>lvalue&lt;/strong>: Expressions that refer to a memory location&lt;/li>
+&lt;li>&lt;strong>rvalue&lt;/strong>: Everything else (temporaries, literals)&lt;/li>
+&lt;/ul>
+&lt;p>This simple model worked well until the need for move semantics became apparent.&lt;/p>
+&lt;h3>C++11 Revolution&lt;span class="hx-absolute -hx-mt-20" id="c11-revolution">&lt;/span>
+&lt;a href="#c11-revolution" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>C++11 introduced a more refined system with five value categories:&lt;/p>
+&lt;ul>
+&lt;li>Primary categories: lvalue, xvalue, prvalue&lt;/li>
+&lt;li>Combined categories: glvalue (generalized lvalue), rvalue&lt;/li>
+&lt;/ul>
+&lt;p>This change was driven by:&lt;/p>
+&lt;ol>
+&lt;li>Introduction of move semantics&lt;/li>
+&lt;li>Need for perfect forwarding&lt;/li>
+&lt;li>Rvalue references (Type&amp;amp;&amp;amp;)&lt;/li>
+&lt;/ol>
+&lt;h3>C++17 Guaranteed Copy Elision&lt;span class="hx-absolute -hx-mt-20" id="c17-guaranteed-copy-elision">&lt;/span>
+&lt;a href="#c17-guaranteed-copy-elision" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>C++17 further refined the model by:&lt;/p>
+&lt;ul>
+&lt;li>Guaranteeing copy elision in certain cases&lt;/li>
+&lt;li>Materializing temporary objects differently&lt;/li>
+&lt;li>Clarifying prvalue materialization&lt;/li>
+&lt;/ul>
+&lt;h3>Modern Understanding (C++20 and beyond)&lt;span class="hx-absolute -hx-mt-20" id="modern-understanding-c20-and-beyond">&lt;/span>
+&lt;a href="#modern-understanding-c20-and-beyond" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>The current model emphasizes:&lt;/p>
+&lt;ul>
+&lt;li>Properties over categories
+&lt;ul>
+&lt;li>Has Identity&lt;/li>
+&lt;li>Can Be Moved From&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Direct interaction with:
+&lt;ul>
+&lt;li>Reference qualifiers&lt;/li>
+&lt;li>Template argument deduction&lt;/li>
+&lt;li>Overload resolution&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2>References&lt;span class="hx-absolute -hx-mt-20" id="references">&lt;/span>
+&lt;a href="#references" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;ul>
+&lt;li>&lt;a href="https://www.youtube.com/watch?v=XS2JddPq7GQ" target="_blank" rel="noopener">Ben Saks. Back to Basics: Understanding Value Categories. CppCon 2019&lt;/a>&lt;/li>
+&lt;/ul></description></item></channel></rss>
