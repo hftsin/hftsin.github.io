@@ -1,10 +1,10 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Happy Hacking – Tmux</title><link>/tags/tmux/</link><description>Recent content in Tmux on Happy Hacking</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 24 Jul 2022 20:35:41 +0800</lastBuildDate><atom:link href="/tags/tmux/index.xml" rel="self" type="application/rss+xml"/><item><title>Tmux Cheat Sheet</title><link>/tutorials/tmux-cheat-sheet/</link><pubDate>Sun, 24 Jul 2022 20:35:41 +0800</pubDate><guid>/tutorials/tmux-cheat-sheet/</guid><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Happy Hacking – Tmux</title><link>/tags/tmux/</link><description>Recent content in Tmux on Happy Hacking</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><managingEditor>hanfengtsin@gmail.com (hftsin)</managingEditor><webMaster>hanfengtsin@gmail.com (hftsin)</webMaster><lastBuildDate>Sun, 24 Jul 2022 20:35:41 +0800</lastBuildDate><atom:link href="/tags/tmux/index.xml" rel="self" type="application/rss+xml"/><item><title>Tmux Cheat Sheet</title><link>/tutorials/tmux-cheat-sheet/</link><pubDate>Sun, 24 Jul 2022 20:35:41 +0800</pubDate><author>hanfengtsin@gmail.com (hftsin)</author><guid>/tutorials/tmux-cheat-sheet/</guid><description>
 &lt;blockquote&gt;
-&lt;p&gt;&lt;a href="https://github.com/tmux/" target="_blank" rel="noopener"&gt;tmux&lt;/a&gt; is a terminal multiplexier.&lt;/p&gt;
+&lt;p&gt;&lt;a href="https://github.com/tmux/"target="_blank" rel="noopener"&gt;tmux&lt;/a&gt; is a terminal multiplexier.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2&gt;Terminal Hierarchy&lt;span class="hx-absolute -hx-mt-20" id="terminal-hierarchy"&gt;&lt;/span&gt;
+&lt;h2&gt;Terminal Hierarchy&lt;span class="hx:absolute hx:-mt-20" id="terminal-hierarchy"&gt;&lt;/span&gt;
 &lt;a href="#terminal-hierarchy" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;session -&amp;gt; window -&amp;gt; panel&lt;/p&gt;
-&lt;h2&gt;Key bindings&lt;span class="hx-absolute -hx-mt-20" id="key-bindings"&gt;&lt;/span&gt;
+&lt;h2&gt;Key bindings&lt;span class="hx:absolute hx:-mt-20" id="key-bindings"&gt;&lt;/span&gt;
 &lt;a href="#key-bindings" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Each key binding in tmux belongs to a named key table. There are four default key tables:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;root&lt;/code&gt;: contains key bindings for keys pressed without the prefix key,&lt;/li&gt;
@@ -116,9 +116,9 @@
 &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;h2&gt;Configurations&lt;span class="hx-absolute -hx-mt-20" id="configurations"&gt;&lt;/span&gt;
-&lt;a href="#configurations" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h2&gt;References&lt;span class="hx-absolute -hx-mt-20" id="references"&gt;&lt;/span&gt;
+&lt;h2&gt;Configurations&lt;span class="hx:absolute hx:-mt-20" id="configurations"&gt;&lt;/span&gt;
+&lt;a href="#configurations" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;h2&gt;References&lt;span class="hx:absolute hx:-mt-20" id="references"&gt;&lt;/span&gt;
 &lt;a href="#references" class="subheading-anchor" aria-label="Permalink for this section"&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href="https://tmuxcheatsheet.com" target="_blank" rel="noopener"&gt;Tmux Cheat Sheet &amp;amp; Quick Reference&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="https://github.com/rothgar/awesome-tmux" target="_blank" rel="noopener"&gt;Awesome Tmux&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://tmuxcheatsheet.com"target="_blank" rel="noopener"&gt;Tmux Cheat Sheet &amp;amp; Quick Reference&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/rothgar/awesome-tmux"target="_blank" rel="noopener"&gt;Awesome Tmux&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description></item></channel></rss>
